@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleet-ui
+  namespace: fleet-ui
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: fleet-ui
+  template:
+    metadata:
+      labels:
+        app: fleet-ui
+    spec:
+      containers:
+        - name: fleet-ui
+          image: "{{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}"
+          ports:
+            - name: http
+              containerPort: 9090
+              protocol: TCP

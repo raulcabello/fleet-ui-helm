@@ -1,0 +1,11 @@
+replicaCount: 1
+
+backend:
+  image:
+    repository: ghcr.io/raulcabello/fleet-ui-backend
+    tag: "v0.0.1-alpha1"
+
+ui:
+  image:
+    repository: ghcr.io/raulcabello/fleet-ui
+    tag: "v0.0.1-alpha1"
