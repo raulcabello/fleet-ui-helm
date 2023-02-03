@@ -5,23 +5,21 @@ metadata:
   namespace: fleet-ui
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  namespace: fleet-ui
   name: fleet-ui-role
 rules:
-  - apiGroups: ["fleet.cattle.io/v1alpha1"]
+  - apiGroups: ["fleet.cattle.io"]
     resources: ["gitrepos", "bundles"]
-    verbs: ["get", "watch", "list", "create"]
+    verbs: ["get", "watch", "list", "create", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: fleet-ui-binding
-  namespace: fleet-ui
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: fleet-ui-role
 subjects:
   - kind: ServiceAccount
